@@ -18,6 +18,7 @@ use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 use InspiredMinds\ContaoWowJs\ContaoWowJsBundle;
+use MadeYourDay\RockSolidCustomElements\RockSolidCustomElementsBundle;
 
 
 /**
@@ -34,7 +35,7 @@ class Plugin implements BundlePluginInterface
     {
         return [
             BundleConfig::create(ContaoWowJsBundle::class)
-                ->setLoadAfter([ContaoCoreBundle::class])
+                ->setLoadAfter([ContaoCoreBundle::class, RockSolidCustomElementsBundle::class])
         ];
     }
 }
