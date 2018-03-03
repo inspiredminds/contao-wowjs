@@ -5,7 +5,7 @@
 Contao WOW.js
 =====================
 
-Integrates [WOW.js](https://wowjs.uk/) for Contao Content Elements.
+Integrates [WOW.js](https://wowjs.uk/) for Contao Content Elements. See [Animate.css](https://daneden.github.io/animate.css/) for more details on the provided animations.
 
 ![Content element options](https://raw.githubusercontent.com/inspiredminds/contao-wowjs/master/screenshot.png)
 
