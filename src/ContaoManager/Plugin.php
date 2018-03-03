@@ -7,7 +7,7 @@
  *
  * @package   ContaoWowJs
  * @author    Fritz Michael Gschwantner <https://github.com/fritzmg>
- * @license   LGPL-3.0-or-later
+ * @license   MIT
  * @copyright inspiredminds 2018
  */
 
