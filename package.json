@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "animate.css": "^3.6.1",
+    "wow.js": "^1.2.2"
+  },
+  "scripts": {
+  	"postupdate": "cp node_modules/wow.js/dist/wow.min.js src/Resources/public && cp node_modules/animate.css/animate.min.css src/Resources/public",
+    "postinstall": "cp node_modules/wow.js/dist/wow.min.js src/Resources/public && cp node_modules/animate.css/animate.min.css src/Resources/public"
+  }
+}
