@@ -18,7 +18,7 @@ use Contao\ContentModel;
 class HookListener
 {
     /**
-     * Inject WOWJS attributes
+     * Inject WOW.js attributes
      *
      * @param  ContentModel $objElement
      * @param  string $strBuffer

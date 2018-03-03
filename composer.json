@@ -1,6 +1,6 @@
 {
 	"name": "inspiredminds/contao-wowjs",
-	"description": "Integrates WOWJS for Contao Content Elements.",
+	"description": "Integrates WOW.js for Contao Content Elements.",
 	"keywords": ["contao", "wowjs"],
 	"type": "contao-bundle",
 	"homepage": "http://www.inspiredminds.at",
