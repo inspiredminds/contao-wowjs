@@ -42,7 +42,7 @@ class HookListener
 
         // parse the initial HTML tag
         $strBuffer = \preg_replace_callback(
-            '|<([a-zA-Z]+)(\s[^>]*?)?(?<!/)>|',
+            '|<([a-zA-Z0-9]+)(\s[^>]*?)?(?<!/)>|',
             function ($matches) use ($strClasses, $arrData)
             {
                 $strTag = $matches[1];
