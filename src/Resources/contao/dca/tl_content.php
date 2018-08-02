@@ -130,8 +130,8 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['wowjsAnimation'] = array
             'rollOut',
         ],
     ],
-    'eval' => ['tl_class' => 'w50', 'includeBlankOption'=>true],
-    'sql' => ['type' => 'string', 'length' => 32]
+    'eval' => ['tl_class' => 'w50', 'includeBlankOption' => true],
+    'sql' => ['type' => 'string', 'length' => 32, 'default' => '']
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['wowjsDuration'] = array
@@ -140,7 +140,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['wowjsDuration'] = array
     'exclude' => true,
     'inputType' => 'text',
     'eval' => ['tl_class' => 'w50 clr'],
-    'sql' => ['type' => 'string', 'length' => 16]
+    'sql' => ['type' => 'string', 'length' => 16, 'default' => '']
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['wowjsDelay'] = array
@@ -149,7 +149,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['wowjsDelay'] = array
     'exclude' => true,
     'inputType' => 'text',
     'eval' => ['tl_class' => 'w50'],
-    'sql' => ['type' => 'string', 'length' => 16]
+    'sql' => ['type' => 'string', 'length' => 16, 'default' => '']
 );
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['wowjsOffset'] = array
