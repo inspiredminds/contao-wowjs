@@ -1,3 +1,4 @@
 services:
   inspiredminds_contao_wowjs.listener.hook:
     class: InspiredMinds\ContaoWowJs\EventListener\HookListener
+    public: true
