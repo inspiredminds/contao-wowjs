@@ -13,52 +13,64 @@ declare(strict_types=1);
 namespace InspiredMinds\ContaoWowJs\EventListener;
 
 use Contao\ContentModel;
+use Contao\Widget;
 
+/**
+ * Inject WOW.js attributes.
+ */
 class HookListener
 {
-    /**
-     * Inject WOW.js attributes.
-     *
-     * @return string
-     */
-    public function onGetContentElement(ContentModel $objElement, string $strBuffer): string
+    public function onGetContentElement(ContentModel $element, string $buffer): string
     {
-        if (TL_MODE === 'BE' || !$objElement->wowjsAnimation) {
-            return $strBuffer;
+        return $this->processBuffer($buffer, $element);
+    }
+
+    public function onParseWidget(string $buffer, Widget $widget): string
+    {
+        return $this->processBuffer($buffer, $widget);
+    }
+
+    /**
+     * @param object $object
+     */
+    private function processBuffer(string $buffer, $object): string
+    {
+        if (TL_MODE === 'BE' || !$object->wowjsAnimation) {
+            return $buffer;
         }
 
-        $strClasses = 'wow '.$objElement->wowjsAnimation;
+        $classes = 'wow '.$object->wowjsAnimation;
 
-        $arrData = \array_filter([
-            'data-wow-duration' => $objElement->wowjsDuration,
-            'data-wow-delay' => $objElement->wowjsDelay,
-            'data-wow-offset' => $objElement->wowjsOffset,
-            'data-wow-iteration' => $objElement->wowjsIteration,
-        ], function ($v) { return \strlen($v) > 0; });
+        $dataAttributes = \array_filter([
+            'data-wow-duration' => $object->wowjsDuration,
+            'data-wow-delay' => $object->wowjsDelay,
+            'data-wow-offset' => $object->wowjsOffset,
+            'data-wow-iteration' => $object->wowjsIteration,
+        ], function ($v) { return null !== $v && \strlen($v) > 0; });
 
         // parse the initial HTML tag
-        $strBuffer = \preg_replace_callback(
+        $buffer = \preg_replace_callback(
             '|<([a-zA-Z0-9]+)(\s[^>]*?)?(?<!/)>|',
-            function ($matches) use ($strClasses, $arrData) {
-                $strTag = $matches[1];
-                $strAttributes = $matches[2];
+            function ($matches) use ($classes, $dataAttributes) {
+                $tag = $matches[1];
+                $attributes = $matches[2];
 
                 // add the CSS classes
-                $strAttributes = preg_replace('/class="([^"]+)"/', 'class="$1 '.$strClasses.'"', $strAttributes, 1, $count);
+                $attributes = preg_replace('/class="([^"]+)"/', 'class="$1 '.$classes.'"', $attributes, 1, $count);
                 if (0 === $count) {
-                    $strAttributes .= ' class="'.$strClasses.'"';
+                    $attributes .= ' class="'.$classes.'"';
                 }
 
                 // add the data attributes
-                foreach ($arrData as $key => $value) {
-                    $strAttributes .= ' '.$key.'="'.$value.'"';
+                foreach ($dataAttributes as $key => $value) {
+                    $attributes .= ' '.$key.'="'.$value.'"';
                 }
 
-                return "<{$strTag}{$strAttributes}>";
+                return "<{$tag}{$attributes}>";
             },
-            $strBuffer, 1
+            $buffer, 1
         );
 
-        return $strBuffer;
+        return $buffer;
     }
 }

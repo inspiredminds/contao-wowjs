@@ -10,4 +10,7 @@ declare(strict_types=1);
  * @license LGPL-3.0-or-later
  */
 
-$GLOBALS['TL_HOOKS']['getContentElement'][] = ['inspiredminds_contao_wowjs.listener.hook', 'onGetContentElement'];
+use InspiredMinds\ContaoWowJs\EventListener\HookListener;
+
+$GLOBALS['TL_HOOKS']['getContentElement'][] = [HookListener::class, 'onGetContentElement'];
+$GLOBALS['TL_HOOKS']['parseWidget'][] = [HookListener::class, 'onParseWidget'];
