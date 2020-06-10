@@ -11,6 +11,7 @@ declare(strict_types=1);
  */
 
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
+use Contao\DataContainer;
 use InspiredMinds\ContaoWowJs\ContaoWowJsBundle;
 
 /*
@@ -60,8 +61,8 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['wowjsIteration'] = [
 /*
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_form_field']['config']['onload_callback'][] = function (): void {
-    foreach ($GLOBALS['TL_DCA']['tl_form_field']['palettes'] as $key => $palette) {
+$GLOBALS['TL_DCA']['tl_form_field']['config']['onload_callback'][] = function (DataContainer $dc): void {
+    foreach ($GLOBALS['TL_DCA'][$dc->table]['palettes'] as $key => $palette) {
         if (\is_string($palette)) {
             PaletteManipulator::create()
                 ->addLegend('wowjs_legend', null, PaletteManipulator::POSITION_AFTER, true)
@@ -70,7 +71,7 @@ $GLOBALS['TL_DCA']['tl_form_field']['config']['onload_callback'][] = function ()
                 ->addField('wowjsDelay', 'wowjs_legend', PaletteManipulator::POSITION_APPEND)
                 ->addField('wowjsOffset', 'wowjs_legend', PaletteManipulator::POSITION_APPEND)
                 ->addField('wowjsIteration', 'wowjs_legend', PaletteManipulator::POSITION_APPEND)
-                ->applyToPalette($key, 'tl_form_field')
+                ->applyToPalette($key, $dc->table)
             ;
         }
     }
