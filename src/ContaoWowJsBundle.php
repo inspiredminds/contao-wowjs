@@ -1,14 +1,13 @@
 <?php
 
-/**
- * This file is part of the ContaoWowJs Bundle.
+declare(strict_types=1);
+
+/*
+ * This file is part of the ContaoWowJsBundle.
  *
- * (c) inspiredminds <https://github.com/inspiredminds>
+ * (c) inspiredminds
  *
- * @package   ContaoWowJs
- * @author    Fritz Michael Gschwantner <https://github.com/fritzmg>
- * @license   MIT
- * @copyright inspiredminds 2018
+ * @license LGPL-3.0-or-later
  */
 
 namespace InspiredMinds\ContaoWowJs;
@@ -20,4 +19,110 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class ContaoWowJsBundle extends Bundle
 {
+    public static $animationOptions = [
+        'Attention Seekers' => [
+            'bounce',
+            'flash',
+            'pulse',
+            'rubberBand',
+            'shake',
+            'swing',
+            'tada',
+            'wobble',
+            'jello',
+        ],
+        'Bouncing Entrances' => [
+            'bounceIn',
+            'bounceInDown',
+            'bounceInLeft',
+            'bounceInRight',
+            'bounceInUp',
+        ],
+        'Bouncing Exits' => [
+            'bounceOut',
+            'bounceOutDown',
+            'bounceOutLeft',
+            'bounceOutRight',
+            'bounceOutUp',
+        ],
+        'Fading Entrances' => [
+            'fadeIn',
+            'fadeInDown',
+            'fadeInDownBig',
+            'fadeInLeft',
+            'fadeInLeftBig',
+            'fadeInRight',
+            'fadeInRightBig',
+            'fadeInUp',
+            'fadeInUpBig',
+        ],
+        'Fading Exits' => [
+            'fadeOut',
+            'fadeOutDown',
+            'fadeOutDownBig',
+            'fadeOutLeft',
+            'fadeOutLeftBig',
+            'fadeOutRight',
+            'fadeOutRightBig',
+            'fadeOutUp',
+            'fadeOutUpBig',
+        ],
+        'Flippers' => [
+            'flip',
+            'flipInX',
+            'flipInY',
+            'flipOutX',
+            'flipOutY',
+        ],
+        'Lightspeed' => [
+            'lightSpeedIn',
+            'lightSpeedOut',
+        ],
+        'Rotating Entrances' => [
+            'rotateIn',
+            'rotateInDownLeft',
+            'rotateInDownRight',
+            'rotateInUpLeft',
+            'rotateInUpRight',
+        ],
+        'Rotating Exits' => [
+            'rotateOut',
+            'rotateOutDownLeft',
+            'rotateOutDownRight',
+            'rotateOutUpLeft',
+            'rotateOutUpRight',
+        ],
+        'Sliding Entrances' => [
+            'slideInUp',
+            'slideInDown',
+            'slideInLeft',
+            'slideInRight',
+        ],
+        'Sliding Exits' => [
+            'slideOutUp',
+            'slideOutDown',
+            'slideOutLeft',
+            'slideOutRight',
+        ],
+        'Zoom Entrances' => [
+            'zoomIn',
+            'zoomInDown',
+            'zoomInLeft',
+            'zoomInRight',
+            'zoomInUp',
+        ],
+        'Zoom Exits' => [
+            'zoomOut',
+            'zoomOutDown',
+            'zoomOutLeft',
+            'zoomOutRight',
+            'zoomOutUp',
+        ],
+        'Specials' => [
+            'hinge',
+            'jackInTheBox',
+            'rollIn',
+            'rollOut',
+        ],
+    ];
 }

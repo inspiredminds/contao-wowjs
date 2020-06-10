@@ -1,185 +1,68 @@
 <?php
 
-/**
- * This file is part of the ContaoWowJs Bundle.
+declare(strict_types=1);
+
+/*
+ * This file is part of the ContaoWowJsBundle.
  *
- * (c) inspiredminds <https://github.com/inspiredminds>
+ * (c) inspiredminds
  *
- * @package   ContaoWowJs
- * @author    Fritz Michael Gschwantner <https://github.com/fritzmg>
- * @license   MIT
- * @copyright inspiredminds 2018
+ * @license LGPL-3.0-or-later
  */
 
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
-use Contao\DataContainer;
+use InspiredMinds\ContaoWowJs\ContaoWowJsBundle;
 
-
-/**
+/*
  * Fields
  */
-$GLOBALS['TL_DCA']['tl_content']['fields']['wowjsAnimation'] = array
-(
+$GLOBALS['TL_DCA']['tl_content']['fields']['wowjsAnimation'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_content']['wowjsAnimation'],
     'exclude' => true,
     'inputType' => 'select',
-    'options' => [
-        "Attention Seekers" => [
-            'bounce',
-            'flash',
-            'pulse',
-            'rubberBand',
-            'shake',
-            'swing',
-            'tada',
-            'wobble',
-            'jello',
-        ],
-        "Bouncing Entrances" => [
-            'bounceIn',
-            'bounceInDown',
-            'bounceInLeft',
-            'bounceInRight',
-            'bounceInUp',
-        ],
-        "Bouncing Exits" => [
-            'bounceOut',
-            'bounceOutDown',
-            'bounceOutLeft',
-            'bounceOutRight',
-            'bounceOutUp',
-        ],
-        "Fading Entrances" => [
-            'fadeIn',
-            'fadeInDown',
-            'fadeInDownBig',
-            'fadeInLeft',
-            'fadeInLeftBig',
-            'fadeInRight',
-            'fadeInRightBig',
-            'fadeInUp',
-            'fadeInUpBig',
-        ],
-        "Fading Exits" => [
-            'fadeOut',
-            'fadeOutDown',
-            'fadeOutDownBig',
-            'fadeOutLeft',
-            'fadeOutLeftBig',
-            'fadeOutRight',
-            'fadeOutRightBig',
-            'fadeOutUp',
-            'fadeOutUpBig',
-        ],
-        "Flippers" => [
-            'flip',
-            'flipInX',
-            'flipInY',
-            'flipOutX',
-            'flipOutY',
-        ],
-        "Lightspeed" => [
-            'lightSpeedIn',
-            'lightSpeedOut',
-        ],
-        "Rotating Entrances" => [
-            'rotateIn',
-            'rotateInDownLeft',
-            'rotateInDownRight',
-            'rotateInUpLeft',
-            'rotateInUpRight',
-        ],
-        "Rotating Exits" => [
-            'rotateOut',
-            'rotateOutDownLeft',
-            'rotateOutDownRight',
-            'rotateOutUpLeft',
-            'rotateOutUpRight',
-        ],
-        "Sliding Entrances" => [
-            'slideInUp',
-            'slideInDown',
-            'slideInLeft',
-            'slideInRight',
-
-        ],
-        "Sliding Exits" => [
-            'slideOutUp',
-            'slideOutDown',
-            'slideOutLeft',
-            'slideOutRight',
-        ],
-        "Zoom Entrances" => [
-            'zoomIn',
-            'zoomInDown',
-            'zoomInLeft',
-            'zoomInRight',
-            'zoomInUp',
-        ],
-        "Zoom Exits" => [
-            'zoomOut',
-            'zoomOutDown',
-            'zoomOutLeft',
-            'zoomOutRight',
-            'zoomOutUp',
-        ],
-        "Specials" => [
-            'hinge',
-            'jackInTheBox',
-            'rollIn',
-            'rollOut',
-        ],
-    ],
+    'options' => ContaoWowJsBundle::$animationOptions,
     'eval' => ['tl_class' => 'w50', 'includeBlankOption' => true],
-    'sql' => ['type' => 'string', 'length' => 32, 'default' => '']
-);
+    'sql' => ['type' => 'string', 'length' => 32, 'default' => ''],
+];
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['wowjsDuration'] = array
-(
+$GLOBALS['TL_DCA']['tl_content']['fields']['wowjsDuration'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_content']['wowjsDuration'],
     'exclude' => true,
     'inputType' => 'text',
     'eval' => ['tl_class' => 'w50 clr'],
-    'sql' => ['type' => 'string', 'length' => 16, 'default' => '']
-);
+    'sql' => ['type' => 'string', 'length' => 16, 'default' => ''],
+];
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['wowjsDelay'] = array
-(
+$GLOBALS['TL_DCA']['tl_content']['fields']['wowjsDelay'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_content']['wowjsDelay'],
     'exclude' => true,
     'inputType' => 'text',
     'eval' => ['tl_class' => 'w50'],
-    'sql' => ['type' => 'string', 'length' => 16, 'default' => '']
-);
+    'sql' => ['type' => 'string', 'length' => 16, 'default' => ''],
+];
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['wowjsOffset'] = array
-(
+$GLOBALS['TL_DCA']['tl_content']['fields']['wowjsOffset'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_content']['wowjsOffset'],
     'exclude' => true,
     'inputType' => 'text',
     'eval' => ['tl_class' => 'w50', 'rgxp' => 'natural'],
-    'sql' => "smallint unsigned NULL"
-);
+    'sql' => 'smallint unsigned NULL',
+];
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['wowjsIteration'] = array
-(
+$GLOBALS['TL_DCA']['tl_content']['fields']['wowjsIteration'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_content']['wowjsIteration'],
     'exclude' => true,
     'inputType' => 'text',
     'eval' => ['tl_class' => 'w50', 'rgxp' => 'natural'],
-    'sql' => "smallint unsigned NULL"
-);
+    'sql' => 'smallint unsigned NULL',
+];
 
-
-/**
+/*
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_content']['config']['onload_callback'][] = function()
-{
-    foreach ($GLOBALS['TL_DCA']['tl_content']['palettes'] as $key => $palette)
-    {
-        if (\is_string($palette))
-        {
+$GLOBALS['TL_DCA']['tl_content']['config']['onload_callback'][] = function (): void {
+    foreach ($GLOBALS['TL_DCA']['tl_content']['palettes'] as $key => $palette) {
+        if (\is_string($palette)) {
             PaletteManipulator::create()
                 ->addLegend('wowjs_legend', 'expert_legend', PaletteManipulator::POSITION_AFTER, true)
                 ->addField('wowjsAnimation', 'wowjs_legend', PaletteManipulator::POSITION_APPEND)
@@ -187,7 +70,8 @@ $GLOBALS['TL_DCA']['tl_content']['config']['onload_callback'][] = function()
                 ->addField('wowjsDelay', 'wowjs_legend', PaletteManipulator::POSITION_APPEND)
                 ->addField('wowjsOffset', 'wowjs_legend', PaletteManipulator::POSITION_APPEND)
                 ->addField('wowjsIteration', 'wowjs_legend', PaletteManipulator::POSITION_APPEND)
-                ->applyToPalette($key, 'tl_content');
+                ->applyToPalette($key, 'tl_content')
+            ;
         }
     }
 };

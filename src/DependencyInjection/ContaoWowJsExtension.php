@@ -1,14 +1,13 @@
 <?php
 
-/**
- * This file is part of the ContaoWowJs Bundle.
+declare(strict_types=1);
+
+/*
+ * This file is part of the ContaoWowJsBundle.
  *
- * (c) inspiredminds <https://github.com/inspiredminds>
+ * (c) inspiredminds
  *
- * @package   ContaoWowJs
- * @author    Fritz Michael Gschwantner <https://github.com/fritzmg>
- * @license   MIT
- * @copyright inspiredminds 2018
+ * @license LGPL-3.0-or-later
  */
 
 namespace InspiredMinds\ContaoWowJs\DependencyInjection;
@@ -23,7 +22,7 @@ class ContaoWowJsExtension extends Extension
     /**
      * {@inheritdoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('listener.yml');

@@ -1,14 +1,13 @@
 <?php
 
-/**
- * This file is part of the ContaoWowJs Bundle.
+declare(strict_types=1);
+
+/*
+ * This file is part of the ContaoWowJsBundle.
  *
- * (c) inspiredminds <https://github.com/inspiredminds>
+ * (c) inspiredminds
  *
- * @package   ContaoWowJs
- * @author    Fritz Michael Gschwantner <https://github.com/fritzmg>
- * @license   MIT
- * @copyright inspiredminds 2018
+ * @license LGPL-3.0-or-later
  */
 
 namespace InspiredMinds\ContaoWowJs\EventListener;
@@ -18,20 +17,17 @@ use Contao\ContentModel;
 class HookListener
 {
     /**
-     * Inject WOW.js attributes
+     * Inject WOW.js attributes.
      *
-     * @param  ContentModel $objElement
-     * @param  string $strBuffer
      * @return string
      */
     public function onGetContentElement(ContentModel $objElement, string $strBuffer): string
     {
-        if (TL_MODE == 'BE' || !$objElement->wowjsAnimation)
-        {
+        if (TL_MODE === 'BE' || !$objElement->wowjsAnimation) {
             return $strBuffer;
         }
 
-        $strClasses = 'wow ' . $objElement->wowjsAnimation;
+        $strClasses = 'wow '.$objElement->wowjsAnimation;
 
         $arrData = \array_filter([
             'data-wow-duration' => $objElement->wowjsDuration,
@@ -43,19 +39,19 @@ class HookListener
         // parse the initial HTML tag
         $strBuffer = \preg_replace_callback(
             '|<([a-zA-Z0-9]+)(\s[^>]*?)?(?<!/)>|',
-            function ($matches) use ($strClasses, $arrData)
-            {
+            function ($matches) use ($strClasses, $arrData) {
                 $strTag = $matches[1];
                 $strAttributes = $matches[2];
 
                 // add the CSS classes
-                $strAttributes = preg_replace('/class="([^"]+)"/', 'class="$1 ' . $strClasses . '"', $strAttributes, 1, $count);
-                if (0 === $count) $strAttributes.= ' class="' . $strClasses . '"';
+                $strAttributes = preg_replace('/class="([^"]+)"/', 'class="$1 '.$strClasses.'"', $strAttributes, 1, $count);
+                if (0 === $count) {
+                    $strAttributes .= ' class="'.$strClasses.'"';
+                }
 
                 // add the data attributes
-                foreach ($arrData as $key => $value)
-                {
-                    $strAttributes.= ' ' . $key . '="' . $value . '"';
+                foreach ($arrData as $key => $value) {
+                    $strAttributes .= ' '.$key.'="'.$value.'"';
                 }
 
                 return "<{$strTag}{$strAttributes}>";

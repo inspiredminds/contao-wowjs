@@ -1,14 +1,13 @@
 <?php
 
-/**
- * This file is part of the ContaoWowJs Bundle.
+declare(strict_types=1);
+
+/*
+ * This file is part of the ContaoWowJsBundle.
  *
- * (c) inspiredminds <https://github.com/inspiredminds>
+ * (c) inspiredminds
  *
- * @package   ContaoWowJs
- * @author    Fritz Michael Gschwantner <https://github.com/fritzmg>
- * @license   MIT
- * @copyright inspiredminds 2018
+ * @license LGPL-3.0-or-later
  */
 
 namespace InspiredMinds\ContaoWowJs\ContaoManager;
@@ -20,11 +19,8 @@ use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 use InspiredMinds\ContaoWowJs\ContaoWowJsBundle;
 use MadeYourDay\RockSolidCustomElements\RockSolidCustomElementsBundle;
 
-
 /**
  * Plugin for the Contao Manager.
- *
- * @author Fritz Michael Gschwantner <fmg@inspiredminds.at>
  */
 class Plugin implements BundlePluginInterface
 {
@@ -35,7 +31,7 @@ class Plugin implements BundlePluginInterface
     {
         return [
             BundleConfig::create(ContaoWowJsBundle::class)
-                ->setLoadAfter([ContaoCoreBundle::class, RockSolidCustomElementsBundle::class])
+                ->setLoadAfter([ContaoCoreBundle::class, RockSolidCustomElementsBundle::class]),
         ];
     }
 }

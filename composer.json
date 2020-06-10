@@ -4,7 +4,7 @@
 	"keywords": ["contao", "wowjs"],
 	"type": "contao-bundle",
 	"homepage": "http://www.inspiredminds.at",
-	"license": "MIT",
+	"license": "LGPL-3.0-or-later",
 	"authors": [
 		{
 			"name": "Fritz Michael Gschwantner",
@@ -20,7 +20,7 @@
 		"forum": "https://community.contao.org/de"
 	},
 	"require": {
-		"php": ">=7.0",
+		"php": ">=7.1",
 		"contao/core-bundle": "^4.4"
 	},
 	"autoload": {
@@ -30,5 +30,8 @@
 	},
 	"extra": {
 		"contao-manager-plugin": "InspiredMinds\\ContaoWowJs\\ContaoManager\\Plugin"
-	}
+	},
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16"
+    }
 }

@@ -1,16 +1,14 @@
 <?php
 
-/**
- * This file is part of the ContaoWowJs Bundle.
- *
- * (c) inspiredminds <https://github.com/inspiredminds>
- *
- * @package   ContaoWowJs
- * @author    Fritz Michael Gschwantner <https://github.com/fritzmg>
- * @license   MIT
- * @copyright inspiredminds 2018
- */
+declare(strict_types=1);
 
+/*
+ * This file is part of the ContaoWowJsBundle.
+ *
+ * (c) inspiredminds
+ *
+ * @license LGPL-3.0-or-later
+ */
 
 $GLOBALS['TL_LANG']['tl_content']['wowjs_legend'] = 'WOW.js';
 $GLOBALS['TL_LANG']['tl_content']['wowjsAnimation'] = ['Animation', 'Wählen Sie eine Animation aus, die ausgeführt wird, wenn das Element sichtbar wird.'];
