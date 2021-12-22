@@ -61,7 +61,11 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['wowjsIteration'] = [
 /*
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_form_field']['config']['onload_callback'][] = function (DataContainer $dc): void {
+$GLOBALS['TL_DCA']['tl_form_field']['config']['onload_callback'][] = function (?DataContainer $dc): void {
+    if (null === $dc) {
+        return;
+    }
+
     foreach ($GLOBALS['TL_DCA'][$dc->table]['palettes'] as $key => $palette) {
         if (\is_string($palette)) {
             PaletteManipulator::create()
