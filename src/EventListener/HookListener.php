@@ -46,7 +46,7 @@ class HookListener
             'data-wow-delay' => $object->wowjsDelay,
             'data-wow-offset' => $object->wowjsOffset,
             'data-wow-iteration' => $object->wowjsIteration,
-        ], function ($v) { return null !== $v && \strlen($v) > 0; });
+        ], function ($v) { return null !== $v && '' !== $v; });
 
         // parse the initial HTML tag
         $buffer = \preg_replace_callback(
