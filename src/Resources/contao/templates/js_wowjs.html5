@@ -1,5 +1,5 @@
 <?php $GLOBALS['TL_CSS'][] = 'bundles/contaowowjs/animate.min.css'; ?>
-<?= Template::generateScriptTag('bundles/contaowowjs/wow.min.js') ?>
+<?= Contao\Template::generateScriptTag('bundles/contaowowjs/wow.min.js') ?>
 <script>
   new WOW().init();
 </script>
