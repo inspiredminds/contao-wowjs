@@ -69,7 +69,8 @@ $GLOBALS['TL_DCA']['tl_form_field']['config']['onload_callback'][] = function (?
     foreach ($GLOBALS['TL_DCA'][$dc->table]['palettes'] as $key => $palette) {
         if (\is_string($palette)) {
             PaletteManipulator::create()
-                ->addLegend('wowjs_legend', null, PaletteManipulator::POSITION_AFTER, true)
+                // We have to use a non-existent legend here (see https://github.com/contao/contao/pull/5032)
+                ->addLegend('wowjs_legend', 'foobar', PaletteManipulator::POSITION_AFTER, true)
                 ->addField('wowjsAnimation', 'wowjs_legend', PaletteManipulator::POSITION_APPEND)
                 ->addField('wowjsDuration', 'wowjs_legend', PaletteManipulator::POSITION_APPEND)
                 ->addField('wowjsDelay', 'wowjs_legend', PaletteManipulator::POSITION_APPEND)

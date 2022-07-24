@@ -1,3 +1,4 @@
 services:
-  InspiredMinds\ContaoWowJs\EventListener\HookListener:
-    public: true
+    InspiredMinds\ContaoWowJs\EventListener\HookListener:
+        autowire: true
+        autoconfigure: true

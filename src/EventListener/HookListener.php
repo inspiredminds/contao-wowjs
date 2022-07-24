@@ -13,18 +13,36 @@ declare(strict_types=1);
 namespace InspiredMinds\ContaoWowJs\EventListener;
 
 use Contao\ContentModel;
+use Contao\CoreBundle\Routing\ScopeMatcher;
+use Contao\CoreBundle\ServiceAnnotation\Hook;
 use Contao\Widget;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Inject WOW.js attributes.
  */
 class HookListener
 {
+    private $scopeMatcher;
+    private $requestStack;
+
+    public function __construct(ScopeMatcher $scopeMatcher, RequestStack $requestStack)
+    {
+        $this->scopeMatcher = $scopeMatcher;
+        $this->requestStack = $requestStack;
+    }
+
+    /** 
+     * @Hook("getContentElement")
+     */
     public function onGetContentElement(ContentModel $element, string $buffer): string
     {
         return $this->processBuffer($buffer, $element);
     }
 
+    /** 
+     * @Hook("parseWidget")
+     */
     public function onParseWidget(string $buffer, Widget $widget): string
     {
         return $this->processBuffer($buffer, $widget);
@@ -35,7 +53,9 @@ class HookListener
      */
     private function processBuffer(string $buffer, $object): string
     {
-        if (TL_MODE === 'BE' || !$object->wowjsAnimation) {
+        $request = $this->requestStack->getCurrentRequest();
+
+        if (($request && $this->scopeMatcher->isBackendRequest($request)) || !$object->wowjsAnimation) {
             return $buffer;
         }
 
@@ -44,8 +64,9 @@ class HookListener
         $dataAttributes = \array_filter([
             'data-wow-duration' => $object->wowjsDuration,
             'data-wow-delay' => $object->wowjsDelay,
-            'data-wow-offset' => $object->wowjsOffset,
-            'data-wow-iteration' => $object->wowjsIteration,
+            // https://github.com/contao/contao/issues/5034
+            'data-wow-offset' => $object->wowjsIteration > 0 ? $object->wowjsOffset : '',
+            'data-wow-iteration' => $object->wowjsIteration > 0 ? $object->wowjsIteration : '',
         ], function ($v) { return null !== $v && '' !== $v; });
 
         // parse the initial HTML tag
