@@ -65,7 +65,7 @@ class HookListener
             'data-wow-duration' => $object->wowjsDuration,
             'data-wow-delay' => $object->wowjsDelay,
             // https://github.com/contao/contao/issues/5034
-            'data-wow-offset' => $object->wowjsIteration > 0 ? $object->wowjsOffset : '',
+            'data-wow-offset' => $object->wowjsOffset > 0 ? $object->wowjsOffset : '',
             'data-wow-iteration' => $object->wowjsIteration > 0 ? $object->wowjsIteration : '',
         ], function ($v) { return null !== $v && '' !== $v; });
 
