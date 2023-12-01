@@ -74,7 +74,7 @@ class HookListener
             '|<([a-zA-Z0-9]+)(\s[^>]*?)?(?<!/)>|',
             function ($matches) use ($classes, $dataAttributes) {
                 $tag = $matches[1];
-                $attributes = $matches[2];
+                $attributes = $matches[2] ?? '';
 
                 // add the CSS classes
                 $attributes = preg_replace('/class="([^"]+)"/', 'class="$1 '.$classes.'"', $attributes, 1, $count);
