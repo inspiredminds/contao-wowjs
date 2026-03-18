@@ -1,43 +1,56 @@
 {
-	"name": "inspiredminds/contao-wowjs",
-	"description": "Integrates WOW.js for Contao content elements and form fields.",
-	"keywords": ["contao", "wowjs"],
-	"type": "contao-bundle",
-	"homepage": "http://www.inspiredminds.at",
-	"license": "LGPL-3.0-or-later",
-	"authors": [
-		{
-			"name": "Fritz Michael Gschwantner",
-			"homepage": "http://www.inspiredminds.at",
-			"email": "fmg@inspiredminds.at",
-			"role": "Developer"
-		}
-	],
-	"support": {
-		"email": "fmg@inspiredminds.at",
-		"issues": "https://github.com/inspiredminds/contao-wowjs/issues",
-		"source": "https://github.com/inspiredminds/contao-wowjs",
-		"forum": "https://community.contao.org/de"
-	},
+    "name": "inspiredminds/contao-wowjs",
+    "description": "Integrates WOW.js for Contao content elements and form fields.",
+    "keywords": ["contao", "wowjs"],
+    "type": "contao-bundle",
+    "homepage": "http://www.inspiredminds.at",
+    "license": "LGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Fritz Michael Gschwantner",
+            "homepage": "http://www.inspiredminds.at",
+            "email": "fmg@inspiredminds.at",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "fmg@inspiredminds.at",
+        "issues": "https://github.com/inspiredminds/contao-wowjs/issues",
+        "source": "https://github.com/inspiredminds/contao-wowjs",
+        "forum": "https://community.contao.org/de"
+    },
     "funding": [
         {
             "type": "github",
             "url": "https://github.com/sponsors/fritzmg"
         }
     ],
-	"require": {
-		"php": ">=7.4",
-		"contao/core-bundle": "^4.9 || ^5.0"
-	},
-	"autoload": {
-		"psr-4": {
-			"InspiredMinds\\ContaoWowJs\\": "src/"
-		}
-	},
-	"extra": {
-		"contao-manager-plugin": "InspiredMinds\\ContaoWowJs\\ContaoManager\\Plugin"
-	},
+    "require": {
+        "php": ">=8.1",
+        "contao/core-bundle": "^4.13 || ^5.0",
+        "symfony/config": "^5.4 || ^6.4 || ^7.4",
+        "symfony/dependency-injection": "^5.4 || ^6.4 || ^7.4",
+        "symfony/http-foundation": "^5.4 || ^6.4 || ^7.4",
+        "symfony/http-kernel": "^5.4 || ^6.4 || ^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "InspiredMinds\\ContaoWowJs\\": "src/"
+        }
+    },
+    "extra": {
+        "contao-manager-plugin": "InspiredMinds\\ContaoWowJs\\ContaoManager\\Plugin"
+    },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.16"
+        "contao/easy-coding-standard": "^6.0",
+        "contao/rector": "^1.0",
+        "shipmonk/composer-dependency-analyser": "^1.4"
+    },
+    "config": {
+        "allow-plugins": {
+            "contao-components/installer": true,
+            "php-http/discovery": false,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }

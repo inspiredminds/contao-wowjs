@@ -3,20 +3,13 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the ContaoWowJsBundle.
- *
- * (c) inspiredminds
- *
- * @license LGPL-3.0-or-later
+ * (c) INSPIRED MINDS
  */
 
 namespace InspiredMinds\ContaoWowJs;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-/**
- * Configures the ContaoWowJsBundle.
- */
 class ContaoWowJsBundle extends Bundle
 {
     public static $animationOptions = [
@@ -125,4 +118,9 @@ class ContaoWowJsBundle extends Bundle
             'rollOut',
         ],
     ];
+
+    public function getPath(): string
+    {
+        return \dirname(__DIR__);
+    }
 }

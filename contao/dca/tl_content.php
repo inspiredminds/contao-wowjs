@@ -3,11 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the ContaoWowJsBundle.
- *
- * (c) inspiredminds
- *
- * @license LGPL-3.0-or-later
+ * (c) INSPIRED MINDS
  */
 
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
@@ -17,8 +13,8 @@ use InspiredMinds\ContaoWowJs\ContaoWowJsBundle;
 /*
  * Fields
  */
-$GLOBALS['TL_DCA']['tl_form_field']['fields']['wowjsAnimation'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_form_field']['wowjsAnimation'],
+$GLOBALS['TL_DCA']['tl_content']['fields']['wowjsAnimation'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['wowjsAnimation'],
     'exclude' => true,
     'inputType' => 'select',
     'options' => ContaoWowJsBundle::$animationOptions,
@@ -26,32 +22,32 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['wowjsAnimation'] = [
     'sql' => ['type' => 'string', 'length' => 32, 'default' => ''],
 ];
 
-$GLOBALS['TL_DCA']['tl_form_field']['fields']['wowjsDuration'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_form_field']['wowjsDuration'],
+$GLOBALS['TL_DCA']['tl_content']['fields']['wowjsDuration'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['wowjsDuration'],
     'exclude' => true,
     'inputType' => 'text',
     'eval' => ['tl_class' => 'w50 clr'],
     'sql' => ['type' => 'string', 'length' => 16, 'default' => ''],
 ];
 
-$GLOBALS['TL_DCA']['tl_form_field']['fields']['wowjsDelay'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_form_field']['wowjsDelay'],
+$GLOBALS['TL_DCA']['tl_content']['fields']['wowjsDelay'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['wowjsDelay'],
     'exclude' => true,
     'inputType' => 'text',
     'eval' => ['tl_class' => 'w50'],
     'sql' => ['type' => 'string', 'length' => 16, 'default' => ''],
 ];
 
-$GLOBALS['TL_DCA']['tl_form_field']['fields']['wowjsOffset'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_form_field']['wowjsOffset'],
+$GLOBALS['TL_DCA']['tl_content']['fields']['wowjsOffset'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['wowjsOffset'],
     'exclude' => true,
     'inputType' => 'text',
     'eval' => ['tl_class' => 'w50', 'rgxp' => 'natural'],
     'sql' => 'smallint unsigned NULL',
 ];
 
-$GLOBALS['TL_DCA']['tl_form_field']['fields']['wowjsIteration'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_form_field']['wowjsIteration'],
+$GLOBALS['TL_DCA']['tl_content']['fields']['wowjsIteration'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['wowjsIteration'],
     'exclude' => true,
     'inputType' => 'text',
     'eval' => ['tl_class' => 'w50', 'rgxp' => 'natural'],
@@ -61,16 +57,11 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['wowjsIteration'] = [
 /*
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_form_field']['config']['onload_callback'][] = function (?DataContainer $dc): void {
-    if (null === $dc) {
-        return;
-    }
-
+$GLOBALS['TL_DCA']['tl_content']['config']['onload_callback'][] = static function (DataContainer $dc): void {
     foreach ($GLOBALS['TL_DCA'][$dc->table]['palettes'] as $key => $palette) {
-        if (\is_string($palette)) {
+        if (is_string($palette)) {
             PaletteManipulator::create()
-                // We have to use a non-existent legend here (see https://github.com/contao/contao/pull/5032)
-                ->addLegend('wowjs_legend', 'foobar', PaletteManipulator::POSITION_AFTER, true)
+                ->addLegend('wowjs_legend', 'expert_legend', PaletteManipulator::POSITION_AFTER, true)
                 ->addField('wowjsAnimation', 'wowjs_legend', PaletteManipulator::POSITION_APPEND)
                 ->addField('wowjsDuration', 'wowjs_legend', PaletteManipulator::POSITION_APPEND)
                 ->addField('wowjsDelay', 'wowjs_legend', PaletteManipulator::POSITION_APPEND)
