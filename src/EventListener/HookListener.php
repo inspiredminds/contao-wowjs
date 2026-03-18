@@ -71,7 +71,7 @@ class HookListener
 
         // parse the initial HTML tag
         $buffer = \preg_replace_callback(
-            '|<([a-zA-Z0-9]+)(\s[^>]*?)?(?<!/)>|',
+            '/<([a-zA-Z0-9]+)(\s+(?:"[^"]*"|\'[^\']*\'|[^>])*)?(?<!\/)>/',
             function ($matches) use ($classes, $dataAttributes) {
                 $tag = $matches[1];
                 $attributes = $matches[2] ?? '';
