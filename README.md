@@ -12,7 +12,7 @@ Simply enable the `js_wowjs` template in your page layout. Create a custom templ
 
 ```css
 .wow {
-  visibility: hidden;
+    visibility: hidden;
 }
 ```
 
